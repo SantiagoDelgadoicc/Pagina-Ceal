@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'ceal',
-    'ayudas',
-    'carrera',
-    'noticias',
-    'proyectos',
-    'calendario',
+    'assistance',
+    'computing',
+    'news',
+    'projects',
+    'calendar',
     'dashboard',
 ]
 

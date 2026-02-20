@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     # aquivan las url
-    path('', views.carrera_index, name='carrera_index'),
+    path('', views.news_index, name='news_index'),
 ]

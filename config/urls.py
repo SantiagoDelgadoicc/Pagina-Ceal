@@ -23,11 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('Sobre-el-Ceal/', include('ceal.urls')),
-    path('Tablero-de-Ayudas-Academicas/', include('ayudas.urls')),
-    path('Sobre-Ingenieria-Civil-en-Computacion-e-Informatica/', include('carrera.urls')),
-    path('Noticias/', include('noticias.urls')),
-    path('Tablero-de-Proyectos-y-Practicas/', include('proyectos.urls')),
-    path('Calendario-Academico/', include('calendario.urls')),
+    path('Tablero-de-Ayudas-Academicas/', include('assistance.urls')),
+    path('Sobre-Ingenieria-Civil-en-Computacion-e-Informatica/', include('computing.urls')),
+    path('Noticias/', include('news.urls')),
+    path('Tablero-de-Proyectos-y-Practicas/', include('projects.urls')),
+    path('Calendario-Academico/', include('calendar.urls')),
     path('Dashboard/', include('dashboard.urls')),
 ]
 
