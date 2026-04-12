@@ -6,5 +6,114 @@
 <body>
     <h1>Pagina Ayudas</h1>
     <p>DIICC</p>
+    {% extends 'navbar.html' %}
+
+    {% block content %}
+    <div class="assistance-container">
+        <div class="tabs-header" style="display: flex; gap: 15px; margin-bottom: 30px; margin-top: 30px;">
+            <button class="tab-btn active" onclick="openTab(event, 'ayudantias')"style= " background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">Ayudantías</button>
+            <button class="tab-btn" onclick="openTab(event, 'tutorias')"  style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">Tutorías</button>
+            <button class="tab-btn" onclick="openTab(event, 'solicitudes')"  style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">Solicitudes</button>
+        </div>
+
+        <div id="ayudantias" class="tab-content">
+            <div class="grid-cards">
+                {% for a in ayudantias %}
+                <div class="card">
+                    <span class="badge blue">{{ a.ramo }}</span>
+                    <p><strong>{{ a.ayudante }}</strong></p>
+                    <p><small>{{ a.horarios }}</small></p>
+                </div>
+                {% empty %}
+                <p>No hay ayudantías registradas.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="tutorias" class="tab-content" style="display:none;">
+            <div class="grid-cards">
+                {% for t in tutorias %}
+                <div class="card">
+                    <p><strong>{{ t.tutor }}</strong></p>
+                    <p>{{ t.ramos_que_domina }}</p>
+                    <p style="color: #007bff;">{{ t.email }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="solicitudes" class="tab-content" style="display:none;">
+            <button class="btn-primary" onclick="showModal()" style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">
+            + Crear Nueva Solicitud
+            </button>
+            <div class="grid-cards" style="margin-top: 20px;">
+                {% for s in solicitudes %}
+                <div class="card-solicitud" style="border-left: 5px solid #007bff">
+                    <h3>Ayuda para {{ s.get_ramo_display }}</h3>
+                    <p><strong>Integrantes:</strong> {{ s.cantidad_estudiantes }}</p>
+                    <p><strong>Contacto:</strong> {{ s.info_contacto }}</p>
+                    <p><small>Vence el: {{ s.fecha_limite }}</small></p>
+                </div>
+                {% empty %}
+                <p>No hay solicitudes pendientes de ayuda.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="modalSolicitud" class="modal-overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;">
+        <div class="modal-card" style="background: white; padding: 30px; border-radius: 20px; width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h2 style="margin-top: 0;">Pedir Ayuda Académica</h2>
+            
+            <form method="POST" action="{% url 'crear_solicitud' %}">
+                {% csrf_token %}
+                
+                <label style="display:block; margin-top:15px; font-weight: bold;">Ramo:</label>
+                <select name="ramo" style="width:100%; padding:10px; margin-top:5px; border: 1px solid #ccc; border-radius: 5px;" required>
+                    <option value="CALCULO">Cálculo I/II</option>
+                    <option value="FISICA">Física I/II</option>
+                    <option value="BD">Base de Datos</option>
+                    <option value="PROG">Programación</option>
+                </select>
+
+                <label style="display:block; margin-top:15px; font-weight: bold;">¿Cuántos alumnos son?</label>
+                <input type="number" name="cantidad" min="1" value="1" style="width:100%; padding:10px; margin-top:5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+
+                <label style="display:block; margin-top:15px; font-weight: bold;">Tu contacto (WhatsApp o Email):</label>
+                <input type="text" name="info_contacto" placeholder="Ej: +569... o alumno@uda.cl" style="width:100%; padding:10px; margin-top:5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+
+                <label style="display:block; margin-top:15px; font-weight: bold;">¿Hasta cuándo necesitas la ayuda?</label>
+                <input type="date" name="fecha_limite" style="width:100%; padding:10px; margin-top:5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" required>
+
+                <div class="modal-actions" style="margin-top:25px; display:flex; gap:10px;">
+                    <button type="button" onclick="closeModal()" style="flex:1; padding:12px; border-radius: 8px; border: 1px solid #ccc; cursor:pointer; background: #f8f9fa;">Cerrar</button>
+                    <button type="submit" style="flex:2; padding:12px; border-radius: 8px; border: none; background:#007bff; color:white; font-weight: bold; cursor:pointer;">Publicar Solicitud</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-card { background: white; padding: 30px; border-radius: 20px; width: 400px; }
+        .tab-btn.active { background: #007bff; color: white; }
+        .grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .card, .card-solicitud { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        function showModal() { document.getElementById('modalSolicitud').style.display = 'flex'; }
+        function closeModal() { document.getElementById('modalSolicitud').style.display = 'none'; }
+    </script>
+    {% endblock %}
 </body>
 </html>

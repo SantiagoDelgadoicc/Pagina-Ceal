@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'core',
     'ceal',
     'assistance',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'projects',
     'calendar',
     'dashboard',
+    'resources',
 ]
 
 MIDDLEWARE = [
