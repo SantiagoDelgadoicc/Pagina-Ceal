@@ -29,6 +29,7 @@ urlpatterns = [
     path('Tablero-de-Proyectos-y-Practicas/', include('projects.urls')),
     path('Calendario-Academico/', include('calendar.urls')),
     path('Dashboard/', include('dashboard.urls')),
+    path('Recursos-Academicos/', include('resources.urls')),
 ]
 
 if settings.DEBUG:

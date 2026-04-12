@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import HomeFeature , PendingTask
 
-# Register your models here.
+admin.site.register(HomeFeature)
+admin.site.register(PendingTask)

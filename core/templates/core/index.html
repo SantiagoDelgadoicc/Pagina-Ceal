@@ -4,7 +4,66 @@
     <title>CEAL - Inicio</title>
 </head>
 <body>
-    <h1>Pagina Inicio</h1>
-    <p>DIIC</p>
+    {% extends 'navbar.html' %}
+    {% block content %}
+    <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; font-family: sans-serif;">
+            
+    <div class="card shadow" style="background: #f8f9fa; border-radius: 15px; padding: 20px; border-left: 5px solid #ffc107;">
+        <h3 style="margin-top:0;">Pendientes</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            {% for item in reminders %}
+                <div style="background: white; padding: 10px; border-radius: 8px; font-size: 0.9rem; border: 1px solid #eee;">
+                    <strong>{{ item.task_name }}</strong><br>
+                    <small>{{ item.description }}</small>
+                </div>
+            {% empty %}
+                <p>No hay pendientes hoy</p>
+            {% endfor %}
+        </div>
+    </div>
+
+        <div class="card shadow" style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 10px;">
+            <a href="{% url 'assistance_index' %}" class="btn-nav" style="background: #007bff; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Ayuda Académica</a>
+            <a href="{% url 'acalendar_index' %}" class="btn-nav" style="background: #00ff11; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Calendario</a>
+            <a href="{% url 'projects_index' %}" class="btn-nav" style="background: #6f42c1; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Proyectos y Prácticas</a>
+        </div>
+
+        <div class="card shadow" style="background: white; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
+            {% if feature %}
+                <img src="{{ feature.image.url }}" style="width: 100%; height: 150px; object-fit: cover;">
+                <div style="padding: 15px;">
+                    <h4 style="margin: 0 0 10px 0;">{{ feature.title }}</h4>
+                    <p style="font-size: 0.9rem; color: #666;">{{ feature.text }}</p>
+                </div>
+            {% else %}
+                <div style="padding: 20px; text-align: center; color: #ccc;">Configurar en Admin</div>
+            {% endif %}
+        </div>
+
+        <div class="card shadow" style="grid-column: 1 / -1; background: white; border-radius: 15px; padding: 20px;">
+            <h3 style="margin-top:0; border-bottom: 2px solid #eee; padding-bottom: 10px;">Últimas Noticias</h3>
+            <div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px;">
+                {% for n in latest_news %}
+                    <div onclick="openNewsModal('{{ n.id }}')" style="min-width: 250px; cursor: pointer; transition: transform 0.2s;">
+                        <img src="{{ n.image.url }}" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
+                        <h5 style="margin: 10px 0 5px 0;">{{ n.title }}</h5>
+                        <small style="color: #888;">{{ n.created_at|date:"d M" }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .shadow { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-nav:hover { opacity: 0.9; transform: scale(1.02); transition: 0.2s; }
+    </style>
+
+    <script>
+        function openNewsModal(id) {
+            window.location.href = `/noticias/?id=${id}`;
+        }
+    </script>
+    {% endblock %}
 </body>
 </html>
