@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>CEAL - Inicio</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 <body>
     {% extends 'navbar.html' %}
@@ -24,7 +26,7 @@
 
         <div class="card shadow" style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 10px;">
             <a href="{% url 'assistance_index' %}" class="btn-nav" style="background: #007bff; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Ayuda Académica</a>
-            <a href="{% url 'acalendar_index' %}" class="btn-nav" style="background: #00ff11; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Calendario</a>
+            <a href="{% url 'calendar_index' %}" class="btn-nav" style="background: #00ff11; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Calendario</a>
             <a href="{% url 'projects_index' %}" class="btn-nav" style="background: #6f42c1; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Proyectos y Prácticas</a>
         </div>
 
@@ -61,7 +63,7 @@
 
     <script>
         function openNewsModal(id) {
-            window.location.href = `/noticias/?id=${id}`;
+            window.location.href = `/Noticias/?id=${id}`;
         }
     </script>
     {% endblock %}
