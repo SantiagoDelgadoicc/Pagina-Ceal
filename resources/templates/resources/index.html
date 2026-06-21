@@ -1,32 +1,27 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title> - Ceal</title>
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'resources/css/style.css' %}">
-</head>
-<body>
-    {% extends 'navbar.html' %}
+{% endblock %}
 
-    {% block content %}
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; font-family: sans-serif; text-align: center;">
-        
-        <h1 style="color: #333;">Recursos Académicos CEAL</h1>
-        <p style="color: #666; max-width: 400px; margin-bottom: 30px;">
-            Escanea el siguiente código para acceder a la carpeta compartida de apuntes, libros y material de estudio.
-        </p>
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh; font-family: sans-serif; text-align: center;">
+    
+    <h1 style="color: #333;">Recursos Académicos CEAL</h1>
+    <p style="color: #666; max-width: 400px; margin-bottom: 30px;">
+        Escanea el siguiente código para acceder a la carpeta compartida de apuntes, libros y material de estudio.
+    </p>
 
-        <div class="qr-container" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-            {% if resource %}
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ resource.drive_url }}" 
-                    alt="QR Recursos Académicos" 
-                    style="width: 250px; height: 250px;">
-            {% else %}
-                <p style="color: #ff4444;">El administrador aún no ha configurado el link del Drive</p>
-            {% endif %}
-        </div>
-
+    <div class="qr-container" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        {% if resource %}
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data={{ resource.drive_url }}" 
+                 alt="QR Recursos Académicos" 
+                 style="width: 250px; height: 250px;">
+        {% else %}
+            <p style="color: #ff4444;">El administrador aún no ha configurado el link del Drive</p>
+        {% endif %}
     </div>
-    {% endblock %}
-</body>
-</html>
+
+</div>
+{% endblock %}
