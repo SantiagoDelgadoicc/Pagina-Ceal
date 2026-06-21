@@ -1,13 +1,11 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CEAL - Tablero de Proyectos y Practicas</title>
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'projects/css/style.css' %}">
-</head>
-<body>
-    {% extends 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
     <h1>Pagina Tablero de Proyectos y Practicas</h1>
     <p>DIICC</p>
-</body>
-</html>
+{% endblock %}

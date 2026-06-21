@@ -1,16 +1,13 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CEAL - Tablero de ayudas academicas</title>
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'assistance/css/style.css' %}">
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     <h1>Pagina Ayudas</h1>
     <p>DIICC</p>
-    {% extends 'navbar.html' %}
-
-    {% block content %}
     <div class="assistance-container">
         <div class="tabs-header" style="display: flex; gap: 15px; margin-bottom: 30px; margin-top: 30px;">
             <button class="tab-btn active" onclick="openTab(event, 'ayudantias')"style= " background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">Ayudantías</button>
@@ -103,8 +100,8 @@
         .card, .card-solicitud { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     </style>
 
+    <script src="{% static 'core/js/main.js' %}"></script>
     <script>
-        src="{% static 'core/js/main.js' %}"
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -117,6 +114,4 @@
         function showModal() { document.getElementById('modalSolicitud').style.display = 'flex'; }
         function closeModal() { document.getElementById('modalSolicitud').style.display = 'none'; }
     </script>
-    {% endblock %}
-</body>
-</html>
+{% endblock %}

@@ -1,34 +1,29 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CEAL - Noticias</title>
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'news/css/style.css' %}">
-</head>
-<body>
-    {% extends 'navbar.html' %}
+{% endblock %}
 
-    {% block content %}
-        <h1>Pagina Noticias</h1>
-        <p>DIICC</p>
+{% block content %}
+    <h1>Pagina Noticias</h1>
+    <p>DIICC</p>
 
-        <div class="muro-noticias">
-        {% for noticia in noticias %}
-            <div class="tarjeta-noticia" style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                <h3>{{ noticia.title }}</h3>
-                <p>{{ noticia.summary }}</p>
-                {% if noticia.image %}
-                    <img src="{{ noticia.image.url }}" width="300">
-                {% endif %}
-                <details>
-                    <summary style="color: blue; cursor: pointer;">"Leer más"</summary>
-                    <div class="modal-content">
-                        <p>{{ noticia.content }}</p>
-                    </div>
-                </details>
-            </div>
-        {% endfor %}
+    <div class="muro-noticias">
+    {% for noticia in noticias %}
+        <div class="tarjeta-noticia" style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+            <h3>{{ noticia.title }}</h3>
+            <p>{{ noticia.summary }}</p>
+            {% if noticia.image %}
+                <img src="{{ noticia.image.url }}" width="300">
+            {% endif %}
+            <details>
+                <summary style="color: blue; cursor: pointer;">"Leer más"</summary>
+                <div class="modal-content">
+                    <p>{{ noticia.content }}</p>
+                </div>
+            </details>
         </div>
-    {% endblock %}
-</body>
-</html>
+    {% endfor %}
+    </div>
+{% endblock %}

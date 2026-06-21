@@ -1,16 +1,15 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CEAL - Calendario Academico</title>
+
+{% block extra_css %}
+    <!-- Inyectamos el CSS específico del calendario en el head de la navbar -->
     <link rel="stylesheet" href="{% static 'calendar/css/style.css' %}">
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     <h1>Pagina Calendario Academico</h1>
     <p>DIICC</p>
-    {% extends 'navbar.html' %}
 
-    {% block content %}
     <div class="calendar-wrapper" style="display: flex; gap: 20px; padding: 20px; font-family: sans-serif;">
         <div class="calendar-main" style="flex: 3; background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <div class="calendar-nav" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
@@ -24,7 +23,7 @@
             </div>
 
             <div id="calendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: #eee; border: 1px solid #eee;">
-                </div>
+            </div>
         </div>
 
         <div class="calendar-side" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
@@ -38,6 +37,7 @@
         </div>
     </div>
 
+    <!-- Modal Evento -->
     <div id="eventModal" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:2000; justify-content:center; align-items:center;">
         <div class="modal-content" style="background:white; padding:30px; border-radius:20px; width:400px;">
             <h2 id="modalTitle" >Crea Evento</h2>
@@ -165,7 +165,8 @@
                     </div>
                 `).join('') : '<p style="text-align:center; color:#999; margin-top:30px;">No events scheduled.</p>';
             }
-}
+        }
+
         function openEditModal(eventId) {
             const event = events.find(e => e.id === eventId);
             if (!event) return;
@@ -186,7 +187,8 @@
             form.action = "{% url 'create_event' %}";
             form.reset();
             openModal('eventModal');
-}
+        }
+
         function changeMonth(step) {
             currentData.setMonth(currentData.getMonth() + step);
             render();
@@ -197,6 +199,7 @@
             currentData.setMonth(parseInt(picker.value));
             render();
         }
+
         function openModal(id) { 
             document.getElementById(id).style.display = 'flex'; 
         }
@@ -210,6 +213,4 @@
             render();
         };
     </script>
-    {% endblock %}
-</body>
-</html>
+{% endblock %}

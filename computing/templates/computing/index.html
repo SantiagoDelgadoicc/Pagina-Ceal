@@ -1,12 +1,11 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CEAL - Sobre Ingenieria Civil en Computacion e Informatica</title>
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'computing/css/style.css' %}">
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     <h1>Pagina Sobre Ingenieria Civil en Computacion e Informatica</h1>
     <p>DIICC</p>
-</body>
-</html>
+{% endblock %}
