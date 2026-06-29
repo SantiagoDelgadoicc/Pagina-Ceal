@@ -6,6 +6,105 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Pagina CEAL</h1>
-    <p>DIICC</p>
+<div class="ceal-container">
+    <!-- SECCIÓN HERO Y FOTO GRUPAL -->
+    <section class="ceal-hero">
+        <h1>Centro de Estudiantes (CEAL)</h1>
+        <h2>Departamento de Ingeniería Informática y Ciencias de la Computación (DIICC)</h2>
+
+        <!-- Contenedor para la foto grupal (opcional/modificable) -->
+        <div class="group-photo-container">
+            <!-- Reemplaza el src con la ruta real de la foto de todo el equipo -->
+            <img src="{% static 'ceal/img/foto_grupal.jpg' %}" alt="Equipo CEAL DIICC" class="group-photo">
+        </div>
+
+        <div class="ceal-description">
+            <p>Somos el Centro de Estudiantes del DIICC, un equipo dedicado a representar y velar por los intereses de nuestros compañeros. Nuestro compromiso es fomentar el desarrollo académico, social y cultural dentro del departamento, organizando actividades, brindando apoyo estudiantil y sirviendo como puente de comunicación directo entre el estudiantado y la dirección.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- DIRECTIVA PRINCIPAL (4 Miembros) -->
+    <section class="ceal-team">
+        <h3>Directiva Principal</h3>
+        <div class="members-grid">
+            <!-- Presidente/a -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/presi.jpg' %}" alt="Presidente/a">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Presidente/a</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+            <!-- Vicepresidente/a -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/vice.jpg' %}" alt="Vicepresidente/a">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Vicepresidente/a</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+            <!-- Secretario/a -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/secre.jpg' %}" alt="Secretario/a">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Secretario/a</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+            <!-- Tesorero/a -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/teso.jpg' %}" alt="Tesorero/a">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Tesorero/a</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- VOCALES DE CARRERA (2 Miembros) -->
+    <section class="ceal-team">
+        <h3>Vocales de Carrera</h3>
+        <!-- Usamos una clase extra 'vocales-grid' para centrarlos mejor al ser solo dos -->
+        <div class="members-grid vocales-grid">
+            <!-- Vocal 1 -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/vocal1.jpg' %}" alt="Vocal 1">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Vocal de Carrera</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+            <!-- Vocal 2 -->
+            <div class="member-card">
+                <img src="{% static 'ceal/img/vocal2.jpg' %}" alt="Vocal 2">
+                <h4>Nombre Apellido</h4>
+                <p class="role">Vocal de Carrera</p>
+                <p class="email"><a href="mailto:correo@institucion.cl">correo@institucion.cl</a></p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- SECCIÓN DE ACTIVIDADES / GALERÍA -->
+    <section class="ceal-activities">
+        <h3>Nuestras Actividades</h3>
+        <p class="activities-desc">Un vistazo a los eventos, talleres y asambleas que hemos organizado como CEAL.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="{% static 'ceal/img/actividad1.jpg' %}" alt="Actividad 1">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'ceal/img/actividad2.jpg' %}" alt="Actividad 2">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'ceal/img/actividad3.jpg' %}" alt="Actividad 3">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'ceal/img/actividad4.jpg' %}" alt="Actividad 4">
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
