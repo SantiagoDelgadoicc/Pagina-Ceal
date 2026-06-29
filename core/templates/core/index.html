@@ -22,10 +22,24 @@
         </div>
     </div>
 
-    <div class="card shadow" style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 10px;">
-        <a href="{% url 'assistance_index' %}" class="btn-nav" style="background: #007bff; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Ayuda Académica</a>
-        <a href="{% url 'calendar_index' %}" class="btn-nav" style="background: #00ff11; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Calendario</a>
-        <a href="{% url 'projects_index' %}" class="btn-nav" style="background: #6f42c1; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold;">Proyectos y Prácticas</a>
+    <div class="card shadow" style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 1px;">
+        <a href="{% url 'assistance_index' %}" class="btn-nav" >
+            <div>
+                <h3>Ayuda Académica</h3>
+                <h5>Ayudas para tu rendimiento academico</h5>
+            </div>
+        </a>
+        <a href="{% url 'calendar_index' %}" class="btn-nav" >
+            <div>
+                <h3>Proximos eventos</h3>
+                <h5>Dale un vistazo a nuestro calendario!</h5>
+            </div>
+        </a>
+        <a href="{% url 'projects_index' %}" class="btn-nav" >
+            <div>
+                <h3>Proyectos y Prácticas</h3>
+            </div>
+        </a>
     </div>
 
     <div class="card shadow" style="background: white; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
@@ -56,7 +70,6 @@
 
 <style>
     .shadow { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .btn-nav:hover { opacity: 0.9; transform: scale(1.02); transition: 0.2s; }
 </style>
 
 <script>
