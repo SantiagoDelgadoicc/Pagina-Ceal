@@ -6,23 +6,37 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Pagina Noticias</h1>
-    <p>DIICC</p>
+    <div class="header-noticias">
+        <h1>Página Noticias</h1>
+        <p>DIICC</p>
+    </div>
 
     <div class="muro-noticias">
     {% for noticia in noticias %}
-        <div class="tarjeta-noticia" style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-            <h3>{{ noticia.title }}</h3>
-            <p>{{ noticia.summary }}</p>
+        <div class="tarjeta-noticia">
+            
             {% if noticia.image %}
-                <img src="{{ noticia.image.url }}" width="300">
+                <img class="tarjeta-bg" src="{{ noticia.image.url }}" alt="{{ noticia.title }}">
             {% endif %}
-            <details>
-                <summary style="color: blue; cursor: pointer;">"Leer más"</summary>
-                <div class="modal-content">
-                    <p>{{ noticia.content }}</p>
-                </div>
-            </details>
+            
+            <div class="tarjeta-overlay"></div>
+            
+            <div class="tarjeta-content">
+                <h3>{{ noticia.title }}</h3>
+                <p class="resumen">{{ noticia.summary }}</p>
+                
+                <details class="leer-mas-container">
+                    <summary class="btn-leer-mas">
+                        Leer Mas <span class="btn-icon">➔</span>
+                    </summary>
+                    <div class="modal-content">
+                        <h4>{{ noticia.title }}</h4>
+                        <p>{{ noticia.content }}</p>
+                        <div class="cerrar-hint">Vuelve a hacer clic en "Leer Mas" para cerrar</div>
+                    </div>
+                </details>
+            </div>
+            
         </div>
     {% endfor %}
     </div>
