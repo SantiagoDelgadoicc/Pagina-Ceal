@@ -6,71 +6,108 @@
 {% endblock %}
 
 {% block content %}
-<div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; font-family: sans-serif;">
-        
-    <div class="card shadow" style="background: #f8f9fa; border-radius: 15px; padding: 20px; border-left: 5px solid #ffc107;">
-        <h3 style="margin-top:0;">Pendientes</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            {% for item in reminders %}
-                <div style="background: white; padding: 10px; border-radius: 8px; font-size: 0.9rem; border: 1px solid #eee;">
-                    <strong>{{ item.task_name }}</strong><br>
-                    <small>{{ item.description }}</small>
+<div class="dashboard-wrapper">
+    
+    <div class="left-column">
+        <div class="hero-section">
+            <h1 class="hero-title">CEAL</h1>
+            <p class="hero-subtitle">Plataforma institucional que conecta estudiantes, docentes y recursos para potenciar el aprendizaje</p>
+        </div>
+
+        <div class="cards-grid">
+            
+            <div class="white-card">
+                <div class="card-header">
+                    <h3 style="color: #1a1a1a; font-size: 1rem; margin: 0;">Avisos</h3>
+                    <div class="icon-circle bg-blue">
+                        <svg width="18" height="18" fill="white" viewBox="0 0 16 16"><path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z"/></svg>
+                    </div>
                 </div>
-            {% empty %}
-                <p>No hay pendientes hoy</p>
-            {% endfor %}
+                <div class="card-list">
+                    {% for item in reminders %}
+                        <div class="list-item">
+                            <span class="d-block" style="color:#1a1a1a; font-weight: 500; font-size: 0.95rem;">{{ item.task_name }}</span>
+                            <span class="text-muted" style="font-size: 0.85rem;">{{ item.description }}</span>
+                        </div>
+                    {% empty %}
+                        <div class="list-item">
+                            <span class="d-block" style="color:#1a1a1a; font-weight: 500; font-size: 0.95rem;">No hay pendientes</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="white-card p-0" style="justify-content: space-evenly; display: flex; flex-direction: column;">
+                <a href="{% url 'assistance_index' %}" class="nav-row">
+                    <div>
+                        <h4 style="margin: 0; color: #1a1a1a; font-size: 0.95rem; font-weight: 600;">Tutorías y solicitudes</h4>
+                        <span class="text-muted" style="font-size: 0.75rem;">Ayudas para tu rendimiento académico</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
+                <a href="{% url 'calendar_index' %}" class="nav-row">
+                    <div>
+                        <h4 style="margin: 0; color: #1a1a1a; font-size: 0.95rem; font-weight: 600;">Próximos Eventos</h4>
+                        <span class="text-muted" style="font-size: 0.75rem;">Dale un vistazo a nuestro calendario!</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
+                <a href="{% url 'projects_index' %}" class="nav-row" style="border-bottom: none;">
+                    <div>
+                        <h4 style="margin: 0; color: #1a1a1a; font-size: 0.95rem; font-weight: 600;">Proyectos y Prácticas</h4>
+                    </div>
+                    <span class="chevron">›</span>
+                </a>
+            </div>
+
+            <div class="white-card">
+                <div class="card-header">
+                    <div>
+                        <h3 style="color: #1a1a1a; font-size: 1rem; margin: 0;">Galería de imágenes</h3>
+                        <span class="text-muted" style="font-size: 0.75rem;">Revive los momentos claves del semestre</span>
+                    </div>
+                    <div class="icon-circle bg-blue">
+                        <svg width="18" height="18" fill="white" viewBox="0 0 16 16"><path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/></svg>
+                    </div>
+                </div>
+                {% if feature %}
+                    <img src="{{ feature.image.url }}" class="feature-img">
+                {% else %}
+                    <div class="empty-state pt-0">Configurar en Admin</div>
+                {% endif %}
+            </div>
+
         </div>
     </div>
 
-    <div class="card shadow" style="display: grid; grid-template-rows: repeat(3, 1fr); gap: 1px;">
-        <a href="{% url 'assistance_index' %}" class="btn-nav" >
-            <div>
-                <h3>Ayuda Académica</h3>
-                <h5>Ayudas para tu rendimiento academico</h5>
-            </div>
-        </a>
-        <a href="{% url 'calendar_index' %}" class="btn-nav" >
-            <div>
-                <h3>Proximos eventos</h3>
-                <h5>Dale un vistazo a nuestro calendario!</h5>
-            </div>
-        </a>
-        <a href="{% url 'projects_index' %}" class="btn-nav" >
-            <div>
-                <h3>Proyectos y Prácticas</h3>
-            </div>
-        </a>
-    </div>
-
-    <div class="card shadow" style="background: white; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column;">
-        {% if feature %}
-            <img src="{{ feature.image.url }}" style="width: 100%; height: 150px; object-fit: cover;">
-            <div style="padding: 15px;">
-                <h4 style="margin: 0 0 10px 0;">{{ feature.title }}</h4>
-                <p style="font-size: 0.9rem; color: #666;">{{ feature.text }}</p>
-            </div>
-        {% else %}
-            <div style="padding: 20px; text-align: center; color: #ccc;">Configurar en Admin</div>
-        {% endif %}
-    </div>
-
-    <div class="card shadow" style="grid-column: 1 / -1; background: white; border-radius: 15px; padding: 20px;">
-        <h3 style="margin-top:0; border-bottom: 2px solid #eee; padding-bottom: 10px;">Últimas Noticias</h3>
-        <div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px;">
+    <div class="right-column">
+        <div class="news-container">
             {% for n in latest_news %}
-                <div onclick="openNewsModal('{{ n.id }}')" style="min-width: 250px; cursor: pointer; transition: transform 0.2s;">
-                    <img src="{{ n.image.url }}" style="width: 100%; height: 120px; border-radius: 10px; object-fit: cover;">
-                    <h5 style="margin: 10px 0 5px 0;">{{ n.title }}</h5>
-                    <small style="color: #888;">{{ n.created_at|date:"d M" }}</small>
-                </div>
+                {% if forloop.first %}
+                    <div class="news-featured" onclick="openNewsModal('{{ n.id }}')">
+                        <img src="{{ n.image.url }}" alt="{{ n.title }}">
+                        <div class="news-featured-content">
+                            <span class="text-muted" style="font-size: 0.8rem;">Hace 4 hrs</span>
+                            <h4>{{ n.title }}</h4>
+                            <p>La universidad retoma sus actividades académicas con el inicio del nuevo semestre</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="news-item" onclick="openNewsModal('{{ n.id }}')">
+                        <div class="news-text">
+                            <span class="text-muted" style="font-size: 0.8rem;">Hace 4 hrs</span>
+                            <h5>{{ n.title }}</h5>
+                            <p>La universidad retoma sus actividades académicas con el inicio del nuevo semestre</p>
+                        </div>
+                        <img src="{{ n.image.url }}" class="news-thumb" alt="{{ n.title }}">
+                    </div>
+                {% endif %}
+            {% empty %}
+                <div class="empty-state">No hay noticias publicadas</div>
             {% endfor %}
         </div>
     </div>
 </div>
-
-<style>
-    .shadow { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-</style>
 
 <script>
     function openNewsModal(id) {
