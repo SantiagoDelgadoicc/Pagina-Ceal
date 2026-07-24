@@ -1,0 +1,139 @@
+:root {
+  --espaciado-base-cards: 30px;
+}
+
+/* =========================================================
+   Fondo General y Difuminado
+   ========================================================= */
+body {
+    /* Cambia 'URL_DE_TU_IMAGEN.jpg' por la ruta de tu fondo */
+    background: url('https://diicc.uda.cl/img/dpto/about1.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Capa de desenfoque (Glassmorphism) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20, 30, 50, 0.35); /* Tono oscuro semitransparente */
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: -1;
+}
+
+/* Textos principales blancos */
+h1 { color: white; text-align: center; margin-bottom: 5px; font-weight: 400; }
+body > p { color: rgba(255,255,255,0.7); text-align: center; margin-top: 0; margin-bottom: 40px; }
+
+/* =========================================================
+   Contenedor y Pestañas (Efecto Carpeta)
+   ========================================================= */
+.assistance-container {
+    max-width: 85%;
+    margin: 5% auto 50px auto;
+}
+
+.tabs-header {
+    margin-bottom: 0 !important; /* Sobreescribe el margin-bottom: 30px de tu HTML */
+    padding-left: 30px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.15) !important; /* Botón translúcido */
+    color: white !important;
+    border-radius: 15px 15px 0 0 !important; /* Forma de pestaña */
+    box-shadow: none !important;
+    backdrop-filter: blur(5px);
+    padding: 12px 30px !important;
+    position: relative;
+    top: 1px; /* Empuja la pestaña para unirse con el contenido */
+}
+
+.tab-btn.active {
+    background: #eaeff4 !important; /* Mismo color que el fondo del contenido */
+    color: #333 !important;
+    z-index: 10;
+}
+
+.tab-content {
+    background: #eaeff4; /* Fondo gris/blanco claro como en la imagen */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    min-height: 400px;
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================================================
+   Tarjetas (Cards) y Grillas
+   ========================================================= */
+.grid-cards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 80px !important;
+    margin-top: var(--espaciado-base-cards) !important;
+    margin-bottom: var(--espaciado-base-cards) !important;
+    margin-left: var(--espaciado-base-cards) !important;
+    margin-right: var(--espaciado-base-cards) !important;
+}
+
+.card, .card-solicitud {
+    background: white !important;
+    border-radius: 15px !important;
+    padding: 25px 20px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04) !important;
+    text-align: center;
+    border-left: none !important; /* Sobreescribe el border-left de tus solicitudes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Textos dentro de las tarjetas */
+.card p, .card-solicitud p { color: #555; margin: 5px 0; }
+.card strong, .card-solicitud strong { color: #222; font-size: 1.1rem; }
+.card-solicitud h3 { color: #007bff; font-size: 1rem; margin-top: 0; font-weight: bold; }
+
+/* Botón (Badge) de la primera tarjeta */
+.badge.blue {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* =========================================================
+   Botón Crear Solicitud y Modal
+   ========================================================= */
+.btn-primary {
+    background: transparent !important;
+    color: #007bff !important;
+    border: 2px solid #007bff !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:hover {
+    background: #007bff !important;
+    color: white !important;
+}
+
+.modal-overlay {
+    backdrop-filter: blur(5px); /* Efecto difuminado cuando se abre el modal */
+}
+
+.modal-card {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
+    border-radius: 20px !important;
+}
+.modal-card h2 { color: #333; }
+.modal-card label { color: #555; }

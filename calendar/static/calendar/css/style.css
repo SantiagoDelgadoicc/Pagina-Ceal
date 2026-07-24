@@ -1,0 +1,305 @@
+body {
+    /* Cambia 'URL_DE_TU_IMAGEN.jpg' por la ruta de tu fondo */
+    background: url('https://diicc.uda.cl/img/dpto/about1.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Capa de desenfoque (Glassmorphism) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 25, 45, 0.75); /* Tono oscuro semitransparente */
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: -1;
+}
+
+/* =========================================
+   Estilos Generales y Layout
+========================================= */
+body {
+    /* Asumiendo que el fondo de la imagen lo manejas a nivel global en tu base.html, 
+       pero puedes agregar un fondo aquí si es necesario */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.calendar-wrapper {
+    display: flex;
+    gap: 25px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   Panel Principal (Calendario)
+========================================= */
+.calendar-main {
+    flex: 3;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Pestañas de vista (Mes, Semana, etc.) */
+.view-tabs {
+    display: flex;
+    background: #f0f4f8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.view-tabs button {
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    color: #555;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.view-tabs button.active {
+    background: #007bff;
+    color: white;
+    border-radius: 20px;
+}
+
+/* Título central (Mes y Año) */
+.month-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Controles derechos (Hoy, flechas, añadir) */
+.nav-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-hoy {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-arrow {
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: #28a745; /* Diferenciado del azul para que resalte como acción */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Grid del calendario */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cal-header-day {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #666;
+    padding: 15px 10px;
+    background: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.cal-day {
+    background: white;
+    min-height: 100px;
+    padding: 8px;
+    border-right: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+}
+
+.cal-day:nth-child(7n) { border-right: none; }
+.cal-day:hover { background: #f8fbff; }
+.cal-day.empty { background: #fafafa; cursor: default; }
+
+.date-number {
+    align-self: flex-end;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 5px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.today .date-number {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.event-tag {
+    font-size: 0.7rem;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 6px;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cat-EVALUATION { background: #dc3545; }
+.cat-SOCIAL { background: #28a745; }
+.cat-WORKSHOP { background: #007bff; }
+.highlight-modified { border: 2px solid #ffc107; background: #fed241 !important; }
+
+/* =========================================
+   Panel Lateral (Eventos y Notificaciones)
+========================================= */
+.calendar-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.pin-notice {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    font-weight: 600;
+    color: #333;
+}
+
+.pin-icon {
+    background: #007bff;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-details {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    min-height: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.side-panel-title {
+    background: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 8px;
+    margin: 0 auto 20px auto;
+    font-size: 1rem;
+    width: 80%;
+}
+
+.event-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    gap: 15px;
+}
+
+.event-item-time {
+    color: #888;
+    font-size: 0.9rem;
+    min-width: 65px;
+}
+
+.event-item-content {
+    flex-grow: 1;
+}
+
+.event-item-title {
+    color: #333;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* =========================================
+   Modal
+========================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.modal-content input, .modal-content select, .modal-content textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}

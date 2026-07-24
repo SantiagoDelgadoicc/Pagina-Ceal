@@ -6,8 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Pagina Ayudas</h1>
-    <p>DIICC</p>
     <div class="assistance-container">
         <div class="tabs-header" style="display: flex; gap: 15px; margin-bottom: 30px; margin-top: 30px;">
             <button class="tab-btn active" onclick="openTab(event, 'ayudantias')"style= " background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2); transition: all 0.3s ease;">Ayudantías</button>
@@ -93,11 +91,6 @@
     </div>
 
     <style>
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .modal-card { background: white; padding: 30px; border-radius: 20px; width: 400px; }
-        .tab-btn.active { background: #007bff; color: white; }
-        .grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .card, .card-solicitud { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     </style>
 
     <script src="{% static 'core/js/main.js' %}"></script>
