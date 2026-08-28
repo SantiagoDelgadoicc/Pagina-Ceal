@@ -1,6 +1,6 @@
 body {
     /* Cambia 'URL_DE_TU_IMAGEN.jpg' por la ruta de tu fondo */
-    background: url('https://diicc.uda.cl/img/dpto/about1.png') no-repeat center center fixed;
+    background: url('https://diicc.uda.cl/images/departamento/diicc-mejorada2.avif') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     margin: 0;
