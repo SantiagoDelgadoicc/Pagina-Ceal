@@ -13,7 +13,7 @@ nav {
     align-items: center;
     padding: 6px 10px;
     margin: 20px 50px; /* Separación desde los bordes de la pantalla */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
     
     /* TRUCO: Ocultar los " | " del HTML original sin borrar el código */
     font-size: 0; 
@@ -38,7 +38,7 @@ nav a {
 
 /* Efecto al pasar el mouse por encima de los enlaces inactivos */
 nav a:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.20);
     color: white;
 }
 
@@ -48,10 +48,18 @@ Apunta directamente a tu href de Ayuda Académica
 */
 
 nav a.active {
-    background: transparent; /* El fondo ahora lo pone .nav-indicator */
     color: white;
-    font-weight: 600;
+    background: transparent;
     box-shadow: none;
+    
+    /* Mantenemos el peso original para que no salte */
+    font-weight: 500; 
+    
+    /* TRUCO: Añade un borde blanco a la letra para simular el font-weight: 600 */
+    -webkit-text-stroke: 0.5px white;
+    
+    /* Si el trazo te parece muy sutil o agresivo, puedes borrarlo y usar esta sombra en su lugar: */
+    /* text-shadow: 0 0 1px white; */
 }
 
 /* El nuevo indicador que se deslizará por detrás */
